@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 namespace FlappyBird
 {
-    public class FlappyScore : MonoBehaviour
+    public class UINumber : MonoBehaviour
     {
+        public int number = 0;
         public Sprite[] numbers; //stores all the digits
         public GameObject scoreTextPrefab; //score prefab text element to create
         public Vector3 standbyPos = new Vector3(-15, 15); //position offscreen for standby
@@ -15,14 +16,28 @@ namespace FlappyBird
         private GameObject[] scoreTextPool; //gameobject with pool containing the scoreText
         private int[] digits; //digits
 
+        public int Value
+        {
+            //get value
+            get
+            {
+                //return the value obtained
+                return number;
+            }
+            set
+            {
+                number = value;
+                RefreshText(value);
+            }
+        }
         void Start()
         {
             SpawnPool();
 
             //subscribe to scoreAdded function in GameManager
-            GameManager.Instance.scoreAdded += RefreshScore;
+            GameManager.Instance.scoreAdded += RefreshText;
 
-            RefreshScore(0);
+            RefreshText(number);
             //Update score to start on zero
         }
 
@@ -31,10 +46,10 @@ namespace FlappyBird
         {
 
         }
-        void RefreshScore(int score)
+        void RefreshText(int num)
         {
             //convert score into array of digits
-            int[] digits = GetDigits(score);
+            int[] digits = GetDigits(num);
             //loop through digits
             for (int i = 0; i < digits.Length; i++)
             {

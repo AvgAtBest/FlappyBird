@@ -12,7 +12,7 @@ namespace FlappyBird
         public float minY = -1f;
         public float maxY = 3.5f;
         public Vector3 standbyPos = new Vector3(-15, -25);
-        public float startX = 10f;
+        public float startX = 4f;
         
         private Transform[] columns;
         private int currentColumn = 0;

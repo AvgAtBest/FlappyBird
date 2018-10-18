@@ -21,10 +21,11 @@ namespace FlappyBird
             Instance = null;
         }
         #endregion
+        //gameover is false
         public bool isGameOver = false;
         //player score
         public int score = 0;
-
+        public float timeScale = 1;
         //Container that functions can subscribe to and call from
         public delegate void IntCallback(int number);
         public IntCallback scoreAdded;
@@ -43,6 +44,11 @@ namespace FlappyBird
 
             //call subscribers
             scoreAdded.Invoke(score);
+        }
+        public void GameOver()
+        {
+            timeScale = 0;
+            isGameOver = true;
         }
     }
 }

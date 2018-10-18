@@ -26,8 +26,10 @@ namespace FlappyBird
         {
             //Gets position
             Vector3 pos = transform.position;
+
+            float timeScale = GameManager.Instance.timeScale;
             //Move position
-            pos += Vector3.left * moveSpeed * Time.deltaTime;
+            pos += Vector3.left * moveSpeed * Time.deltaTime * timeScale;
             //If position on x axis  is less than or minus width
             if (pos.x < -width && isRepeating)
             {
